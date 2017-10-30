@@ -47,9 +47,39 @@ Develop a server that can perform NLP on text.
 
 #### 3.1 Use Case Description
 
+In the third step we want to bring all concepts together and create a working prototype that can change the room atmosphere depending on things that are said in the room. This means that we will implement a service, which can record human speech and transform the audio into a text file (scenario 1). This text will then be semantically analysed through tokenisation and sentiment analysis to extract moods and emotional intensity (scenario 2). Finally, in scenario 3, we will use this input and change the environment according to the atmosphere in the room (e.g. change lights and colors). 
+
+Since this system should be flexible to some degree there must be a way to define certain mood configurations (e.g. when the emotional intensity is above a certain threshold the lights turn red). These mood configurations should not be hard-coded, but be standardised, human readable and ideally visualisable. Therefor modelling techniques are suited to realise this requirement. A meta model should provide a basic outline on how a mood configuration must look like. On the basis of that meta model, any user can create a model that represents how they want their moods and emotional profiles to be handled. Once a user has created a model, that model can be exported and be used by our service.
+
+Since this service will essentially be a home automation software it should be highly compatible, extensible and also have remote access. This is why a web service is suited for this task. The web service will control the text-to-speech module and the sentiment analysis from scenario 1 and 2. The web service must also import the mood configuration model (created by a user).
+
+Now, based on the sentiment analysis and the mood configuration model, the system needs to change the environment (e.g. color of the lights). To trigger this, a rule engine will be used. The rule engine gets the interpreted sentiment analysis as an input as well as the exported mood configuration model. The rule engine has a rule for each possible element of the model. If there is a match (e.g. emotional level is above a certain threshold) the rule fires.
+
+When a rule from the rule engine is executed it needs to trigger a change in color of the lights. To do this the rule engine can call a script which then sends out a wireless signal. A lamp will listen for signals and will change its color accordingly.
+
+**Proposed software stack:**
+
+- **Operating system:** Any common Linux distribution will do. Linux is open-source, secure, free and can easily be tested locally. If possible the software can the be ported onto the NAO, since the NAO also runs on Linux
+- **Models:** ADOxx can be used to create a meta model as well as the actual models. It also supports XML export.
+- **Engine/Web service:** NodeJS can be used. NodeJS is a JavaScript Runtime which is based on Chrome’s V8 JS engine. It is event-based, non-blocking I/O, lightweight, easily extensible and supports many libraries.
+- **XML-Import:** The web service / rule engine needs to analyse the mood configuration models and therefor they need to be imported. The already in NodeJS included library fs (FileSystem) can be used here. If needed an XML parser can additionally be used to read and interpret the model.
+- **REST-API:** To make our program easily remotely accessible a REST-API will be implemented. Express is a very common way to realise REST-Services with NodeJS. It is an easy-to-use, very established library which is also quite powerful.
+- **Rule engine:** As a rule engine node-rules can be used. Node-rules defines facts (JSON objects) and then executes rules based on these facts. Rules always consist of a condition and a consequence.
+- **Lights:** To validate this prototype at least one actual lamp is required which can glow in different colors. Therefor puck.js can be used. It is an entirely autonomous device which has Bluetooth-support, a button and also an LED which can glow in three different colors. It can also be programmed in JavaScript which will synergise well with our JavaScript-based main program.
+- **Bluetooth:** Finally, to communicate wirelessly between the puck.js and the web service Bluetooth will be used as communication protocol. The puck.js supports Bluetooth natively. The system where the Linux distrubution is running on need to have a hardware Bluetooth module, and the NodeJS application can use the library node-bluetooth to control the LED on the puck.js.
+
 #### 3.2 Deliverables
 
+- An ADOxx metamodel which allows the creation and visualisation of mood configurations
+- At least one ADOxx model derived from the metamodel which will be used to test the service (XML export of the model)
+- A working web service that includes
+  - a REST API to control the service (text2speech and sentiment analysis) and imports the ADOxx model
+  - a rule engine that gets the sentiment analysis as input and fires rules according to the ADOxx mood configuration model
+  - a controller that can change the color of the lights when a rule fires.
+
 #### 3.3 Performance Indicators
+
+A fully working system: Human speech is automatically detected and recorded. According to the mood and emotional intensity the lights in the room will change colors.
 
 ### Scenario 4
 
