@@ -51,6 +51,8 @@ In the third step we want to bring all concepts together and create a working pr
 
 Since this system should be flexible to some degree there must be a way to define certain mood configurations (e.g. when the emotional intensity is above a certain threshold the lights turn red). These mood configurations should not be hard-coded, but be standardised, human readable and ideally visualisable. Therefor modelling techniques are suited to realise this requirement. A meta model should provide a basic outline on how a mood configuration must look like. On the basis of that meta model, any user can create a model that represents how they want their moods and emotional profiles to be handled. Once a user has created a model, that model can be exported and be used by our service.
 
+![Mood configuration model][mood-configuration-model]
+
 Since this service will essentially be a home automation software it should be highly compatible, extensible and also have remote access. This is why a web service is suited for this task. The web service will control the text-to-speech module and the sentiment analysis from scenario 1 and 2. The web service must also import the mood configuration model (created by a user).
 
 Now, based on the sentiment analysis and the mood configuration model, the system needs to change the environment (e.g. color of the lights). To trigger this, a rule engine will be used. The rule engine gets the interpreted sentiment analysis as an input as well as the exported mood configuration model. The rule engine has a rule for each possible element of the model. If there is a match (e.g. emotional level is above a certain threshold) the rule fires.
@@ -96,6 +98,7 @@ A fully working system: Human speech is automatically detected and recorded. Acc
 For the model to be able to connect to the outide and influence the smart home it needs to be connected to the IoT devices in some way.
 ![a picture of a model instance][model-instance]
 
+
 #### 5.2 Deliverables
 
 * Create model instances
@@ -137,3 +140,5 @@ or not The NAO robot is emotionally intelligent in his actions. If the validatio
 
 [//]: # (Image References)
 [model-instance]: ./1209919_OmirobCase/home.png "Model Instance"
+[mood-configuration-model]: ./mood_configuration_model.png "Mood configuration model"
+
