@@ -1,4 +1,4 @@
-# Anwendungen aus Semantischen Technologien
+# Applications of Semantic Technologies
 
 ### Table of contents
 
