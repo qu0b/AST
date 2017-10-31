@@ -2,12 +2,11 @@
 
 ### Table of contents
 
-[Introduction](#introduction)
-
-[Conceptualization](#conceptualization)
-[Scenario 1](#scenario1)
-[Scenario 2](#scenario2)
-[Scenario 3](#scenario3)
+* [Introduction](#introduction)
+* [Conceptualization](#conceptualization)
+* [Scenario 1](#scenario1)
+* [Scenario 2](#scenario2)
+* [Scenario 3](#scenario3)
 
 ## <a name="introduction"></a> Introduction
 
