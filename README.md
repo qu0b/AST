@@ -2,14 +2,14 @@
 
 ### Table of contents
 
-- [Introduction](#chapter1)
+- [Introduction](#introduction)
 - [Conceptualization](#conceptualization)
 - [Scenario 1](#scenario1)
 - [Scenario 2](#scenario2)
 - [Scenario 3](#scenario3)
 - [Conclusion](#conclusion)
 
-## Introduction  <a name="introduction"></a>
+## <a name="introduction"></a> Introduction
 
 Interactions between humans and computers have become common place. Although for robots to live alongside humans they need to possess some form of emotional intelligence. In this project we look at how we can utilize the information harvested from natural language processing (NLP), to determine someone's sentiment. We especially look at how emotionally intelligent a machine can become. The goal of this project is to maximise the emotional quotient of a robot. Similar to the IQ the emotional quotient is a scale of how emotionally intelligent someone is. There first step would be a knowledge base of emotions from which we can infer the emotion from a given sentiment.
 
