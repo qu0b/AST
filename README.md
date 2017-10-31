@@ -11,11 +11,9 @@
 
 ## <a name="introduction"></a> Introduction
 
-Interactions between humans and computers have become common place. Although for robots to live alongside humans they need to possess some form of emotional intelligence. In this project we look at how we can utilize the information harvested from natural language processing (NLP), to determine someone's sentiment. We especially look at how emotionally intelligent a machine can become. The goal of this project is to maximize the emotional quotient of a robot. Similar to the IQ the emotional quotient is a scale of how emotionally intelligent someone is. There first step would be a knowledge base of emotions from which we can infer the emotion from a given sentiment.
+Interactions between humans and computers have become common place. Although for robots to live alongside humans they need to possess some form of emotional intelligence. In this project we look at how we can utilize the information harvested from natural language processing (NLP), to determine someone's sentiment. We especially look at how emotionally intelligent a machine can become. The goal of this project is to maximize the emotional quotient of a robot. Similar to the IQ the emotional quotient is a scale of how emotionally intelligent someone is. 
 
-The next step was to have scenarios created using a modeling procedure. These scenarios are depicted by a model. The user can create a scenario, which adjusts his environment to be in a specific state, depending on the user's mood. To be able to define scenarios it was necessary to create a metamodel of the robots possible actions.
-
-To validate the scenario, a NAO robot is used. The microphone and the Software Development Kit (SDK) of the NAO is used to capture audio clips and to communicate these clips to the Google servers via a REST API. The REST response from the API (speech to text) would be used to send another request. The second request would return the overall sentiment of the previously sent text. The sentiment is then used by the NAO to adjust the current scenario (a scenario is the current state of all the IOT devices in the local environment).
+To validate the scenario, a NAO robot is used. The microphone and the Software Development Kit (SDK) of the NAO is used to capture audio clips and to communicate these clips to the Google servers via a REST API. The REST response from the API (speech to text) would be used to send another request. The second request would return the overall sentiment of the previously sent text. The sentiment is then used by the NAO to adjust the current scenario (a scenario is the current state of all the IOT devices in the local environment e.g. change the color of lights in the room to adnjust atmosphere).
 
 Having a robot as an intelligent assistant e.g. a NAO at home will be like having a butler. He can run to different rooms, ensure everyone is safe and report anything suspicious. But, not only is the NAO interacting with the different devices inside of the house, he is interacting with the people that live there. For that, NAO needs emotional intelligence. For us to be able to make the NAO emotionally intelligent, we need a way for it to analyze and acts on signals e.g. the first step is converting sound waves into text. This is already one of the most difficult tasks for AI and falls into the AI-complete category. Not only is it necessary to identify which language, it is also necessary to identify the information correctly. The correct interpretation can be hard to find. Sarcasm among other language techniques is nearly impossible to detect. Each word in a sentence and its lexical meaning needs to be identified. After that, the semantics context needs to be determined. The NAO will not always interpret everything correctly. Giving the NAO fault tolerance and corrective mechanisms is essential. Of course, it is not necessary to have the lexical meaning of every word for the semantic analysis. It is rather the sentiment of each word that is needed. But since most systems run on commands, these commands need the lexical meaning. Having to solve the context and the sentiment increases processing. This has lead to centralized cloud solutions with light weight robot clients.
 
@@ -194,7 +192,6 @@ The above list also displays some difficulties with creating a functioning model
 * NLP processing
   * Tokenization - Bag of words
   * Sentiment Analysis
-* Knowledge base of emotions.
 
 #### 2.3 Performance Indicators
 
@@ -254,12 +251,6 @@ A fully working system: Human speech is automatically detected and recorded. Acc
 |Usability/Performance|The test subjects can rate the usability/performance of the prototype. Do the test subjects feel like the lights changed according to the mood  of their conversation?
 |Speed| How long does it take for input to be evaluated and a color change to be triggered?|
 |Overall usefulness| Do the test subjects feel like the prototype provides value? Do they like the functionality?|
-
-
-
-## <a name="development"></a> Development 
-
-## <a name="deployment"></a> Deployment
 
 ## <a name="conclusion"></a> Conclusion
 
