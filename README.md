@@ -105,7 +105,7 @@ The second part would be using the text to figure out the sentiment of it. The b
 
 The above list also displays some difficulties with creating a functioning model. It is especially difficult to find a suitable dataset to train your model. Fortunatly, [Google](https://cloud.google.com) provides an API for both speech to text as well as for sentiment analysis. The success scenario would consists of multiple requests that looks something like this:
 
-1. It is possible to send a POST to https://speech.googleapis.com/v1/speech:recognize
+1. It is possible to send a POST to https://speech.googleapis.com/v1/speech:recognize. This post includes metadata (config) about the audio file as well as a base64 encoding of the content.
 
 ```json
 {
@@ -120,7 +120,7 @@ The above list also displays some difficulties with creating a functioning model
 }
 ```
 
-2. Gives a response
+2. Google translates the audio content into the desired language specified. The server then responds with a result array that includes a transcript, the confidence and the words of the audio file.
 
 ```json
 {
@@ -144,7 +144,7 @@ The above list also displays some difficulties with creating a functioning model
 }
 ```
 
-3. Send the text for a sentiment analysis
+3. Using the result from step 2 we can send another request to google. This requests includes metadata about the encoding as well as the text to be analysed.
 
 ```json
 {
@@ -156,7 +156,7 @@ The above list also displays some difficulties with creating a functioning model
 }
 ```
 
-4. Gives a response
+4. The servers respond with the overall document sentiment as well as the sentiment of individual sentences of the content. The magnitude is a sum of how positive and negative the document sentiment is. The score specifies how positive or negative the overall document sentiment is. A document sentiment with a neutral score can still have a high magnitude as positive and negative sentiments cancel eachother out in the score.
 
 ```json
 {
