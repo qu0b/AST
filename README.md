@@ -252,12 +252,6 @@ A fully working system: Human speech is automatically detected and recorded. Acc
 |Speed| How long does it take for input to be evaluated and a color change to be triggered?|
 |Overall usefulness| Do the test subjects feel like the prototype provides value? Do they like the functionality?|
 
-## <a name="conclusion"></a> Conclusion
-
-We have created a validation environment that checks whether
-or not The NAO robot is emotionally intelligent in his actions. If the validation environment runs multiple test cases and each of them succeeds then the validation method would be a success. The test cases should not require humans to monitor the system but a predefined test set with an estimated sentiment polarity should be used to see if the system is operational. Further, the system should validate the resulting state of the IOT devices with the representation in the Model. 
-
-We are not too far away from having a fully functional robot that can interpret our emotions. The difficulty comes in having to ensure that the interpretation is correct. In the future, it would be interesting to see what other devices in our environment could be controlled by our emotions. IOT in the future allows for everything to change without the user directly interacting with the system. The NAO bot could detect if the person was cold and adjust the heating.
 
 [//]: # (Image References)
 [model-instance]: ./1209919_OmirobCase/home.png "Model Instance"
