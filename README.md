@@ -3,6 +3,7 @@
 ### Table of contents
 
 [Introduction](#introduction)
+
 [Conceptualization](#conceptualization)
 [Scenario 1](#scenario1)
 [Scenario 2](#scenario2)
