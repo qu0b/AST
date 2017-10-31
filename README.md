@@ -2,17 +2,21 @@
 
 ## Intorduction
 
-Interactions between humans and computers have become common place. Although for robots to live alongside humans they need to possess some form of emotional intelligence. In this project we looked at how we can utilize the information harvested from natural language processing (NLP), to determine someone's sentiment. We especially looked at how emotionally intelligent a machine can become. The goal of this project is to maximise the emotional quotient of a robot. Similar to the IQ the emotional quotient is a scale of how emotionally intelligent someone is. The first step was to have a knowledge base of emotions as done by.
+Interactions between humans and computers have become common place. Although for robots to live alongside humans they need to possess some form of emotional intelligence. In this project we look at how we can utilize the information harvested from natural language processing (NLP), to determine someone's sentiment. We especially look at how emotionally intelligent a machine can become. The goal of this project is to maximise the emotional quotient of a robot. Similar to the IQ the emotional quotient is a scale of how emotionally intelligent someone is. There first step would be a knowledge base of emotions from which we can infer the emotion from a given sentiment.
 
-The next step was to have scenarios created using a modeling procedure. These scenarios are depicted by a model. The user can create a scenario, which adjusts his environment to be in a specic state, depending on the user's mood. To be able to define scenarios it was necessary to create a Meta Model of the robots possible actions. The actions are then mapped to emotional values/moods from a knowledge base such as an ontology. **This has been achieved using SEMFIS, which helped us create an environment where users can define in what emotional state they have to be for an action from the robot to be made.** For future work, only a subset of actions needs to be classied by the users and the rest will be inferred. Additionally, fuzzy sets were also considered as an alternative and/or an addition to an ontology. It was even considered to integrate fuzzy sets into ontologies.
+The next step was to have scenarios created using a modeling procedure. These scenarios are depicted by a model. The user can create a scenario, which adjusts his environment to be in a specic state, depending on the user's mood. To be able to define scenarios it was necessary to create a Metamodel of the robots possible actions. The actions are then mapped to emotional values/moods from a knowledge base such as an ontology. Only a linear scale of emotions need to be characterised and the rest is inferred. Additionally, fuzzy sets can also be considered as an alternative and/or an addition to an ontology. One can even consider to integrate fuzzy sets with ontologies.
 
-Finally, a validation environment was created with a subset of the specic case. To validate the scenario, a NAO robot was used. The microphone and the Software Development Kit (SDK) was used to capture audio clips and to communicate these clips to the Google servers via a REST API. The rst response from the API (speech to text) would be used to send another request. The second request would return the overall sentiment of the previously sent text. The value was used by the NAO to adjust the current scenario where a scenario is the current state of all the IOT devices in the local environment.
+To validate the scenario, a NAO robot is used. The microphone and the Software Development Kit (SDK) of the NAO is used to capture audio clips and to communicate these clips to the Google servers via a REST API. The REST response from the API (speech to text) would be used to send another request. The second request would return the overall sentiment of the previously sent text. The sentiment is then used by the NAO to adjust the current scenario (a scenario is the current state of all the IOT devices in the local environment).
 
-At first, we discuss a future case, how interactions between humans and machines will be in the next 15-20 years. Then a generic approach of how we would achieve the described future will be discussed. The technology necessary for the advancement will be evaluated. A specic case will be looked at of what is already possible. And, nally, we validated if the case actually works.
+Having a robot as an intelligent assistant e.g. a NAO at home will be like having a butler. He can run to different rooms, ensure everyone is safe and report anything suspicious. But, not only is the NAO interacting with the different devices inside of the house, he is interacting with the people that live there. For that, NAO needs emotional intelligence. For us to be able to make the NAO emotionally intelligent, we need a way for it to analyze and acts on signals e.g. the first step is converting sound waves into text. This is already one of the most difficult tasks for AI and falls into the AI-complete category. Not only is it necessary to identify which language, it is also necessary to identify the information correctly. The correct interpretation can be hard to find. Sarcasm among other language techniques is nearly impossible to detect. Each word in a sentence and its lexical meaning needs to be identified. After that, the semantics context needs to be determined. The NAO will not always interpret everything correctly. Giving the NAO fault tolerance and corrective mechanisms is essential. Of course, it is not necessary to have the lexical meaning of every word for the semantic analysis. It is rather the sentiment of each word that is needed. But since most systems run on commands, these commands need the lexical meaning. Having to solve the context and the sentiment increases processing. This has lead to centralized cloud solutions with light weight robot clients.
 
 ## Conceptulization
 
+We will dive deeper into more specific scenarios in which a robot uses various classification algorithms to determine the mood of the user. Not only will the machine classify the mood but it will also act upon the results. Imagine being able to have a personal assistant that, depending on how you feel, always knows what to do. In this project, scenarios are modelled by the user. The user will be able to model the scenarios from a Metamodel. The robot can then execute a scenario after classifying the user's emotions. An example of a scenario would be modeling the lamps of an apartment and assigning different colors to those lamps depending on the mood. It would also be possible to connect individual colors to a mood. This brings us the specific approach.
+
 Below we will describe six scenarios. These scenarios will clearly show what we wish to implement in our project. Each scenario has a use case description detailing what exactly it tries to achieve. The second part of each scenario describes the deliverables. These are the technologies/concepts that will be used/produced. The last part of each scenario are the key performance indicators. These are the values/variables that will be looked at to measure how successful our implementation is in fulfilling the described usecase.
+
+For our usecases we will follow the vertical transformation of data to knowledge. Our first usecase will be concentrated on the harvestation of data and bringing this data the long way from having weak semantics up to our final use case, where it will have strong semantics. At the risk of being too vague, our first use case starts off simple, so that the other two usecases can build upon it.
 
 ### Scenario 1: Voice to Text
 
@@ -20,13 +24,64 @@ In this first scenario we want to make it possible for the NAO to start and stop
 
 #### 1.1 Use Case Description
 
+This is a rather low level use case. It looks at transforming analoge data into digital data. Further, it looks at detecting (sound) start and stop events. The two actors in this use case are the NAO robot and the human who is interacting with the NAO. The purpose of this use case is to gather the necessary raw data for use cases 2 and 3 so that they can provide semantically meaningfull information, knowledge and actions. Even though this is a low level use case its acomplishment is no small feat. Recording at the right time and reducing noise will be challenging.
+
+The success scenario for this use case would be for someone to have a short conversation with the NAO. An example of this conversation:
+
+1. The user initiates a conversation.
+
+> User: "Hello NAO, i'm home"
+
+2. The NAO detects the word NAO using *ALSSpeechRecognition*
+3. NAO starts recording audio using *ALAudioRecorder*
+4. NAO uses *ALSTextToSpeech* to answer.
+
+> NAO: "Hello, how was your day"
+
+> User: "It was great!"
+
+5. NAO detects the user is talking through *ALSSoundDetection*
+6. As soon as the sound level reaches its signal mean again NAO stops recording
+7. NAO responds with a predefined phrase and stops the session.
+
+> NAO: "I'm glad to hear that"
+
+8. The raw data is saved and can be used for further processing depending on the users model defined in the other use cases.
+
+Exceptions can occur when the NAO starts recording at the wrong time. The stop recording event needs to be triggered at some point. A timeout should be set to ensure that faulty recordings do not become to large.
+
 #### 1.2 Deliverables
+
+The deliverable we wish to present is a runnable programm that will execute on our end device. This end device, the NAO, will be essential in gathering raw data. Without raw data, information and knowledge cannot be derived. The NAO robot comes with an SDK that we intend to use.
+
+It offers a sound management library. This library has the functions necessary to record sound and detect sound events.
+
+The most important parts are listed below and can be found on the [NAO SDK site](http://doc.aldebaran.com/1-14/naoqi/audio/index.html):
+
+|Name|Description|
+|----|-----------|
+|ALSSpeechRecognition|Detects predefined words in multiple languages.|
+|ALSSoundDetection|Detects sound that differs greatly from the signal mean - peak based detection.|
+|ALTextToSpeech|Lets the robot speak such that he can respond.|
+|ALAudioRecorder|Provides audio recordings in WAV and OGG at 48000 Hz. Relies on Linux libraries SNDFile and ALSA.|
+
+!["Figure 1 NAO Microphone"][nao-mic-pos]
 
 #### 1.3 Performance Indicators
 
 Compare the recorded audio file to a script that has been written beforhand and spoken to the NAO bot.
 
+|Criteria|Description|
+|--------|-----------|
+|Clarity|How well the person can be understood from the recording on a scale from 1 to 10.|
+|Completness| Check wether the speaker was cut of at the beginning or the end of the recording.|
+|Length| Compare the length of the audio file to the time that was actually spent talking.|
+|Signal to Noise| Check how strong the noise level is.|
+|False Alarm| Count the times that the NAO starts recording without there being any intent to talk to it.|
+
 ### Scenario 2: Sentiment Analysis
+
+This senario looks deeply into a subject field of semantic technology, namley Natural Language Processing (NLP). This field has become very popular in the past years. It is being used in all sorts of new devices on the market. Devices such as the Alexa, Google home and Siri. These devices try to understand us and to talk to us. They may still have some difficutly in keeping up with the context of a conversation. Although soon Alexa could be your best friend from whom you would hear the newest gossip and get the latest fashion recomendations.
 
 #### 2.1 Use Case Description
 
@@ -35,11 +90,12 @@ Develop a server that can perform NLP on text.
 #### 2.2 Deliverables
 
 * NLP processing
-  * Tokenization
+  * Tokenization - Bag of words
   * Sentiment Analysis
 
 #### 2.3 Performance Indicators
 
+* As Bo Pang and Lillian Lee stated in their paper "If you are reading this because it is your darling fragrance, please wear it at home exclusively" (review by Luca Turin and tania Sanchez of the Givenchy perfume Amarige, in Perfumes: The Guide, Viking 2008). This sentence does not have any obvious negative words but its overall sentiment is negative. It would be possible to compose a list of these seemingly netural sentances and see how well the system performs. These sentances can be composed increasingly more difficult. Ofcourse the expected result should be known beforehand, thus we can compare the expected with the observed.
 * Compare speech from the audio file to the converted text.
 * Emotional Quotient
 
@@ -83,22 +139,6 @@ When a rule from the rule engine is executed it needs to trigger a change in col
 
 A fully working system: Human speech is automatically detected and recorded. According to the mood and emotional intensity the lights in the room will change colors.
 
-### Scenario 4
-
-#### 4.1 Use Case Description
-
-#### 4.2 Deliverables
-
-#### 4.3 Performance Indicators
-
-### Scenario 5: Model Instances
-
-#### 5.1 Use Case Description
-
-For the model to be able to connect to the outide and influence the smart home it needs to be connected to the IoT devices in some way.
-![a picture of a model instance][model-instance]
-
-
 #### 5.2 Deliverables
 
 * Create model instances
@@ -141,4 +181,5 @@ or not The NAO robot is emotionally intelligent in his actions. If the validatio
 [//]: # (Image References)
 [model-instance]: ./1209919_OmirobCase/home.png "Model Instance"
 [mood-configuration-model]: ./mood_configuration_model.png "Mood configuration model"
+[nao-mic-pos]: ./hardware_microposition.png "NAO Microphone Position http://doc.aldebaran.com/1-14/family/robots/microphone_robot.html#robot-microphone 31.10.17"
 
