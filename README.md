@@ -19,7 +19,7 @@ To validate the scenario, a NAO robot is used. The microphone and the Software D
 
 Having a robot as an intelligent assistant e.g. a NAO at home will be like having a butler. He can run to different rooms, ensure everyone is safe and report anything suspicious. But, not only is the NAO interacting with the different devices inside of the house, he is interacting with the people that live there. For that, NAO needs emotional intelligence. For us to be able to make the NAO emotionally intelligent, we need a way for it to analyze and acts on signals e.g. the first step is converting sound waves into text. This is already one of the most difficult tasks for AI and falls into the AI-complete category. Not only is it necessary to identify which language, it is also necessary to identify the information correctly. The correct interpretation can be hard to find. Sarcasm among other language techniques is nearly impossible to detect. Each word in a sentence and its lexical meaning needs to be identified. After that, the semantics context needs to be determined. The NAO will not always interpret everything correctly. Giving the NAO fault tolerance and corrective mechanisms is essential. Of course, it is not necessary to have the lexical meaning of every word for the semantic analysis. It is rather the sentiment of each word that is needed. But since most systems run on commands, these commands need the lexical meaning. Having to solve the context and the sentiment increases processing. This has lead to centralized cloud solutions with light weight robot clients.
 
-## Conceptualization <a name="conceptualization"></a>
+## <a name="conceptualization"></a> Conceptualization
 
 We will dive deeper into more specific scenarios in which a robot uses various classification algorithms to determine the mood of the user. Not only will the machine classify the mood but it will also act upon the results. Imagine being able to have a personal assistant that, depending on how you feel, always knows what to do. In this project, scenarios are modelled by the user. The user will be able to model the scenarios from a Metamodel. The robot can then execute a scenario after classifying the user's emotions. An example of a scenario would be modeling the lamps of an apartment and assigning different colors to those lamps depending on the mood. It would also be possible to connect individual colors to a mood. This brings us the specific approach.
 
@@ -27,7 +27,7 @@ Below we will describe six scenarios. These scenarios will clearly show what we 
 
 For our usecases we will follow the vertical transformation of data to knowledge. Our first usecase will be concentrated on the harvestation of data and bringing this data the long way from having weak semantics up to our final use case, where it will have strong semantics. At the risk of being too vague, our first use case starts off simple, so that the other two usecases can build upon it.
 
-### Scenario 1: Voice to Text <a name="scenario1"></a>
+### <a name="scenario1"></a> Scenario 1: Voice to Text
 
 In this first scenario we want to make it possible for the NAO to start and stop recording audio. The NAO needs to be aware when someone is talking to it in order to start recording. It also has to recognize when someone is done talking to stop the recording. The NAO has multiple built in microphones that can be used to record audio.
 
@@ -88,7 +88,7 @@ Compare the recorded audio file to a script that has been written beforhand and 
 |Signal to Noise| Check how strong the noise level is.|
 |False Alarm| Count the times that the NAO starts recording without there being any intent to talk to it.|
 
-### Scenario 2: Sentiment Analysis <a name="scenario2"></a>
+### <a name="scenario2"></a> Scenario 2: Sentiment Analysis
 
 This senario looks deeply into a subject field of semantic technology, namley Natural Language Processing (NLP). This field has become very popular in the past years. It is being used in all sorts of new devices on the market. Devices such as the Alexa, Google home and Siri. These devices try to understand us and to talk to us. They may still have some difficutly in keeping up with the context of a conversation. Although soon Alexa could be your best friend from whom you would hear the newest gossip and get the latest fashion recomendations.
 
@@ -202,7 +202,7 @@ The above list also displays some difficulties with creating a functioning model
 * Compare speech from the audio file to the converted text.
 * Emotional Quotient
 
-### Scenario 3: Smart Home controller <a name="scenario3"></a>
+### <a name="scenario3"></a> Scenario 3: Smart Home controller
 
 In the third step we want to bring all concepts together and create a working prototype that can change the room atmosphere depending on things that are said in the room. This means that we will implement a service, which can record human speech and transform the audio into a text file (scenario 1). This text will then be semantically analysed through tokenisation and sentiment analysis to extract moods and emotional intensity (scenario 2). Finally, in scenario 3, we will use this input and change the environment according to the atmosphere in the room (e.g. change lights and colors).
 
@@ -254,11 +254,11 @@ A fully working system: Human speech is automatically detected and recorded. Acc
 * Useability
 
 
-## Development <a name="development"></a>
+## <a name="development"></a> Development 
 
-## Deployment <a name="deployment"></a>
+## <a name="deployment"></a> Deployment
 
-## Conclusion <a name="conclusion"></a>
+## <a name="conclusion"></a> Conclusion
 
 We have created a validation environment that checks whether
 or not The NAO robot is emotionally intelligent in his actions. If the validation environment runs multiple test cases and each of them succeeds then the validation method would be a success. The test cases should not require humans to monitor the system but a predefined test set with an estimated sentiment polarity should be used to see if the system is operational. Further, the system should validate the resulting state of the IOT devices with the representation in the Model. 
