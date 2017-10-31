@@ -247,11 +247,14 @@ When a rule from the rule engine is executed it needs to trigger a change in col
 
 #### 3.3 Performance Indicators
 
-A fully working system: Human speech is automatically detected and recorded. According to the mood and emotional intensity the lights in the room will change colors.
+A fully working system: Human speech is automatically detected and recorded. According to the mood and emotional intensity the lights in the room will change colors. In order to test the success and performance of the prototype, test subjects can use the prototype and evaluate the following criteria:
 
-* Interoperability
-* Performance
-* Useability
+|Criteria|Description|
+|--------|-----------|
+|Usability/Performance|The test subjects can rate the usability/performance of the prototype. Do the test subjects feel like the lights changed according to the mood  of their conversation?
+|Speed| How long does it take for input to be evaluated and a color change to be triggered?|
+|Overall usefulness| Do the test subjects feel like the prototype provides value? Do they like the functionality?|
+
 
 
 ## <a name="development"></a> Development 
