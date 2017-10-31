@@ -85,13 +85,107 @@ This senario looks deeply into a subject field of semantic technology, namley Na
 
 #### 2.1 Use Case Description
 
-Develop a server that can perform NLP on text.
+This is a higher level use case. It builds upon the raw data gathered in the first use case. The challenges of this use case can be split into two major parts.
+
+The first part is converting the audio file into text. The sentiment analysis can better be performed on text than it can on sound. In order for us to convert the audio file we need a maschine learning algorithm that has been trained.
+
+The second part would be using the text to figure out the sentiment of it. The baseline algorithm consists of:
+
+* Tokenization
+  * Deal with markup (xml, html)
+  * Capitalization
+  * Phone numbers, dates
+* Feature Extration
+  * What words to exclude/include
+  * Include all words or just the adjectives?
+* Classification
+  * Naive Bayes
+  * MaxEnt
+  * SVM
+
+The above list also displays some difficulties with creating a functioning model. It is especially difficult to find a suitable dataset to train your model. Fortunatly, [Google](https://cloud.google.com) provides an API for both speech to text as well as for sentiment analysis. The success scenario would consists of multiple requests that looks something like this:
+
+1. It is possible to send a POST to https://speech.googleapis.com/v1/speech:recognize
+
+```json
+{
+"config": {
+    "encoding": "WAV",
+    "sampleRateHertz": 44100,
+    "languageCode": "AT"
+  },
+  "audio": {
+    "content":"U29tZSBieXRlcyBhcyBhIHN0cmluZyBiYXNlIDY0IGVuY29kZWQ="
+  },
+}
+```
+
+2. Gives a response
+
+```json
+{
+  "results": [
+    {
+      "transcript": "Enjoy your vacation!",
+      "confidence": 0.9,
+      "words": [
+        {
+            "word": "Enjoy",
+        },
+        {
+            "word": "your",
+        },
+        {
+            "word": "vacation",
+        }
+      ],
+    }
+  ],
+}
+```
+
+3. Send the text for a sentiment analysis
+
+```json
+{
+  "encodingType": "UTF8",
+  "document": {
+    "type": "PLAIN_TEXT",
+    "content": "Enjoy your vacation!"
+  }
+}
+```
+
+4. Gives a response
+
+```json
+{
+  "documentSentiment": {
+    "magnitude": 0.8,
+    "score": 0.8
+  },
+  "language": "en",
+  "sentences": [
+    {
+      "text": {
+        "content": "Enjoy your vacation!",
+        "beginOffset": 0
+      },
+      "sentiment": {
+        "magnitude": 0.8,
+        "score": 0.8
+      }
+    }
+  ]
+}
+```
 
 #### 2.2 Deliverables
 
 * NLP processing
   * Tokenization - Bag of words
   * Sentiment Analysis
+* Knowledge base of emotions.
 
 #### 2.3 Performance Indicators
 
@@ -101,11 +195,15 @@ Develop a server that can perform NLP on text.
 
 ### Scenario 3: Smart Home controller
 
+In the third step we want to bring all concepts together and create a working prototype that can change the room atmosphere depending on things that are said in the room. This means that we will implement a service, which can record human speech and transform the audio into a text file (scenario 1). This text will then be semantically analysed through tokenisation and sentiment analysis to extract moods and emotional intensity (scenario 2). Finally, in scenario 3, we will use this input and change the environment according to the atmosphere in the room (e.g. change lights and colors).
+
 #### 3.1 Use Case Description
 
-In the third step we want to bring all concepts together and create a working prototype that can change the room atmosphere depending on things that are said in the room. This means that we will implement a service, which can record human speech and transform the audio into a text file (scenario 1). This text will then be semantically analysed through tokenisation and sentiment analysis to extract moods and emotional intensity (scenario 2). Finally, in scenario 3, we will use this input and change the environment according to the atmosphere in the room (e.g. change lights and colors). 
+To make it possible for someone to control their own home, a modelling language needs to be created. Through the modelling language the user will be able to control their smart home. We are talking about a smart home in which the lights can be adjusted depending on a certain criteria/emotion that the user can predetermine. This scenario definition needs to be recorded in some way, such as in a model. Using a model to describe a smart home will enable alot of automation and will reduce setup time. Integrating different modelling procedures will let the user start up quickly and control their smart home however they desire.
 
-Since this system should be flexible to some degree there must be a way to define certain mood configurations (e.g. when the emotional intensity is above a certain threshold the lights turn red). These mood configurations should not be hard-coded, but be standardised, human readable and ideally visualisable. Therefor modelling techniques are suited to realise this requirement. A meta model should provide a basic outline on how a mood configuration must look like. On the basis of that meta model, any user can create a model that represents how they want their moods and emotional profiles to be handled. Once a user has created a model, that model can be exported and be used by our service.
+The users need a language i.e. a Metamodel through which they can describe the relationships and entities that are in his smart home. In other words, the user needs a Metamodel that lets the user create a model, which can control not only his smart home but also lets the user describe emotions inside of the model. The Metamodel should define an abstract conceptuilzation of the objects in a smart home and of human emotions. By giving the user the possibility of creating models that can describe facts as well as emotions we are able to give a smart home emotional intelligence. This is limited to the extent that the user can only predefine specific scenarios and a model instance will not learn (from) the behaviour of the user.
+
+This system should be flexible to some degree there must be a way to define certain mood configurations (e.g. when the emotional intensity is above a certain threshold the lights turn red). These mood configurations should not be hard-coded, but be standardised, human readable and ideally visualisable. Therefore modelling techniques are suited to realise this requirement. A Metamodel should provide a basic outline on how a mood configuration must look like. On the basis of that Metamodel, any user can create a model that represents how they want their moods and emotional profiles to be handled. Once a user has created a model, that model can be exported and be used by our service.
 
 ![Mood configuration model][mood-configuration-model]
 
@@ -118,7 +216,7 @@ When a rule from the rule engine is executed it needs to trigger a change in col
 **Proposed software stack:**
 
 - **Operating system:** Any common Linux distribution will do. Linux is open-source, secure, free and can easily be tested locally. If possible the software can the be ported onto the NAO, since the NAO also runs on Linux
-- **Models:** ADOxx can be used to create a meta model as well as the actual models. It also supports XML export.
+- **Models:** ADOxx can be used to create a Metamodel as well as the actual models. It also supports XML export.
 - **Engine/Web service:** NodeJS can be used. NodeJS is a JavaScript Runtime which is based on Chrome’s V8 JS engine. It is event-based, non-blocking I/O, lightweight, easily extensible and supports many libraries.
 - **XML-Import:** The web service / rule engine needs to analyse the mood configuration models and therefor they need to be imported. The already in NodeJS included library fs (FileSystem) can be used here. If needed an XML parser can additionally be used to read and interpret the model.
 - **REST-API:** To make our program easily remotely accessible a REST-API will be implemented. Express is a very common way to realise REST-Services with NodeJS. It is an easy-to-use, very established library which is also quite powerful.
@@ -128,46 +226,24 @@ When a rule from the rule engine is executed it needs to trigger a change in col
 
 #### 3.2 Deliverables
 
-- An ADOxx metamodel which allows the creation and visualisation of mood configurations
-- At least one ADOxx model derived from the metamodel which will be used to test the service (XML export of the model)
+- An ADOxx Metamodel which allows the creation and visualisation of mood configurations
+- At least one ADOxx model derived from the Metamodel which will be used to test the service (XML export of the model)
 - A working web service that includes
   - a REST API to control the service (text2speech and sentiment analysis) and imports the ADOxx model
   - a rule engine that gets the sentiment analysis as input and fires rules according to the ADOxx mood configuration model
   - a controller that can change the color of the lights when a rule fires.
 
+* Modelling Prcedures
+* Graphrep
+
 #### 3.3 Performance Indicators
 
 A fully working system: Human speech is automatically detected and recorded. According to the mood and emotional intensity the lights in the room will change colors.
-
-#### 5.2 Deliverables
-
-* Create model instances
-* Query model
-* Webservice Integration
-
-#### 5.3 Performance Indicators
 
 * Interoperability
 * Performance
 * Useability
 
-### Scenario 6 metamodel
-
-#### 6.1 Use Case Description
-
-To make it possible for someone to control their own home, a modelling language needs to be created. Through the modelling language the user will be able to control their smart home. We are talking about a smart home in which the lights can be adjusted depending on a certain criteria/emotion that the user can predetermine. This definition needs to be recorded in some way, such as in a model. Using a model to describe a smart home will enable alot of automation and will reduce setup time. Integrating different modelling procedures will let the user start up quickly and control their smart home however they desire.
-
-The users need a language i.e. a metamodel through which they can describe the relationships and entities that are in his smart home. In other words, the user needs a metamodel that lets the user create a model, which can control not only his smart home but also lets the user describe emotions inside of the model. The metamodel should define an abstract conceptuilzation of the objects in a smart home and of human emotions. By giving the user the possibility of creating models that can describe facts as well as emotions we are able to give a smart home emotional intelligence. This is limited to the extent that the user can only predefine specific scenarios and a model instance will not learn (from) the behaviour of the user.
-
-#### 6.2 Deliverables
-
-* Create a Metamodel
-* Modelling Prcedures
-* Graphrep
-
-#### 6.3 Performance Indicators
-
-* Easy to distinguish between objects (lookup in dem script)
 
 ## Development
 
@@ -175,8 +251,10 @@ The users need a language i.e. a metamodel through which they can describe the r
 
 ## Conclusion
 
-We have created a validating environment that checks whether
-or not The NAO robot is emotionally intelligent in his actions. If the validation environment runs multiple test cases and each of them succeeds then the validation method would also be a success. The test cases should not require humans to monitor the system but a predened test set with an estimated sentiment polarity should be used to see if the system is operational. Further, the system should validate the resulting state of the IOT devices with the Graphrep representation in the Model. We are not too far away from having a fully functional robot that can interpret our emotions. The difficulty comes in having to ensure that the interpretation is correct. In the future, it would be interesting to see what other devices in our environment could be controlled by our emotions. IOT in the future allows for everything to change without the user directly interacting with the system. The NAO bot could detect if the person was cold and adjust the heating.
+We have created a validation environment that checks whether
+or not The NAO robot is emotionally intelligent in his actions. If the validation environment runs multiple test cases and each of them succeeds then the validation method would be a success. The test cases should not require humans to monitor the system but a predefined test set with an estimated sentiment polarity should be used to see if the system is operational. Further, the system should validate the resulting state of the IOT devices with the representation in the Model. 
+
+We are not too far away from having a fully functional robot that can interpret our emotions. The difficulty comes in having to ensure that the interpretation is correct. In the future, it would be interesting to see what other devices in our environment could be controlled by our emotions. IOT in the future allows for everything to change without the user directly interacting with the system. The NAO bot could detect if the person was cold and adjust the heating.
 
 [//]: # (Image References)
 [model-instance]: ./1209919_OmirobCase/home.png "Model Instance"
