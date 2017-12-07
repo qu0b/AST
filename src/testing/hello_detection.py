@@ -13,7 +13,7 @@ from naoqi import ALModule
 from optparse import OptionParser
 
 NAO_IP = "192.168.75.41"
-vocabulary = ["Hello", "Nao"]
+vocabulary = ["home", "record"]
 
 
 # Global variable to store the HumanGreeter module instance
@@ -35,8 +35,13 @@ class SoundDetectionModule(ALModule):
         # Create a proxy to ALTextToSpeech for later use
         asr = ALProxy("ALSpeechRecognition")
         self.tts = ALProxy("ALTextToSpeech")
-        #asr.setLanguage("English")
-        #asr.setVocabulary(["Hello, Nao"], False)
+
+        
+        asr.setLanguage("English")
+        asr.pause(True)
+        asr.setVocabulary(vocabulary, False)
+        asr.pause(False)
+        asr.subscribe("Test_ASR")
 
 
 
@@ -49,17 +54,28 @@ class SoundDetectionModule(ALModule):
         """ This will be called each time a word is
         recognized.
         """
-        memory.unsubscribeToEvent("WordRecognized", "SoundDetection")
-        if(len(value) > 1 and value[1] >= 0.4):
-          self.tts.say("How are you today")
-        else:
-          self.tts.say("I didnt Catch that")
-        time.sleep(2)
-        memory.subscribeToEvent("WordRecognized", "SoundDetection", "onWordRecognized")
-
-
-    def unsubscribe(self):
-      self.asr.unsubscribe("Test_ASR")
+        try:
+            memory.unsubscribeToEvent("WordRecognized", "SoundDetection")
+            if(len(value) > 1 and value[1] >= 0.5):    
+                self.tts.say("Recording")
+                import subprocess
+                recorder = ALProxy("ALAudioRecorder")
+                self.tts.say("Starting recorder")
+                recorder.stopMicrophonesRecording()
+                recorder.startMicrophonesRecording("/home/nao/test.wav", "wav", 16000, (1,0,0,0))
+                time.sleep(10)
+                self.tts.say("stopping recorder")
+                recorder.stopMicrophonesRecording()
+                self.tts.say("copying audio file")
+                subprocess.call(["scp", "nao@192.168.75.41:test.wav","."])
+                memory.subscribeToEvent("WordRecognized", "SoundDetection", "onWordRecognized")
+            else:
+                self.tts.say("I didnt Catch that")
+                time.sleep(1)
+                memory.subscribeToEvent("WordRecognized", "SoundDetection", "onWordRecognized")
+        except:
+            print("overload")
+        
         
 
 

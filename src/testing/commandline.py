@@ -12,8 +12,8 @@ player = ALProxy ("ALAudioPlayer")
 fileId = player.loadFile("/home/nao/test.wav")
 player.play(fileId)
 
-# ssh-keygen -t rsa
-# ssh-copy-id nao@192.168.75.41
+# on command line: ssh-keygen -t rsa
+# on command line: ssh-copy-id nao@192.168.75.41
 
 import subprocess
 subprocess.call(["scp", "nao@192.168.75.41:test.wav","."])
