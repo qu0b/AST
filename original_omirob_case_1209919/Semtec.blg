@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Semtec.aux
+The style file: natdin.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: Bibliography.bib
+Warning--there's an address but no publisher in cs3473
+You've used 17 entries,
+            4728 wiz_defined-function locations,
+            998 strings with 9876 characters,
+and the built_in function-call counts, 13338 in all, are:
+= -- 1406
+> -- 430
+< -- 503
++ -- 596
+- -- 151
+* -- 951
+:= -- 2411
+add.period$ -- 20
+call.type$ -- 17
+change.case$ -- 96
+chr.to.int$ -- 17
+cite$ -- 18
+duplicate$ -- 341
+empty$ -- 753
+format.name$ -- 261
+if$ -- 2464
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 52
+newline$ -- 107
+num.names$ -- 70
+pop$ -- 130
+preamble$ -- 1
+purify$ -- 130
+quote$ -- 0
+skip$ -- 764
+stack$ -- 0
+substring$ -- 914
+swap$ -- 84
+text.length$ -- 58
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 224
+warning$ -- 1
+while$ -- 116
+width$ -- 0
+write$ -- 250
+(There was 1 warning)
