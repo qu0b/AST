@@ -78,9 +78,9 @@ def onWordRecognized(self, key, value, message):
         print("overload")
 ```
 
-We defined a function `onWordRecognized` which gets triggered each time a word is recognized. All code inside that function is wrapped into a `try/catch` block, since the NAO will otherwise confuse itself and call the function too many times (see `"overload"`).
+We defined a function `onWordRecognized` which gets triggered each time a word is recognized. All code inside that function is wrapped into a `try/catch` block, since the NAO will otherwise confuse itself and call the function too many times (see [overload]("https://gitlab.dke.univie.ac.at/st3f4n-s/ast-nao/issues/1")).
 
-If the NAO detects a word we defined (e.g. `record`) with a confidence of over `0.5` it will start recording for 16000 milliseconds before saving the file and copying it to our machine.
+If the NAO detects a word we defined (e.g. `record`) with a confidence of over `0.5` it will start recording for 10 seconds. before saving the file and copying it to our machine via `scp`.
 
 ## <a name="technologystack"></a>Technology stack of all scenarios
 
@@ -92,8 +92,7 @@ Our system relies on the components depicted in the following deployment model.
 
 Since this service will essentially be a home automation software it should be highly compatible, extensible and also have remote access. This is why a web service is suited for this task. That way we can seperate our application logic from the NAO by a certain degree. This makes sense, since the NAO will never leave the boundries of the wireless network anyway. The web service will make the API calls for our speech-to-text conversion and the sentiment analysis from scenario 1 and 2. The web service must also import the mood configuration model created by a user (adoxx_model_export.xml). We will rely on a NodeJS server for this task.
 
-Now, based on the sent
-iment analysis and the mood configuration model, the system needs to change the environment (e.g. color of the lights). To trigger this, a rule engine will be used. The rule engine gets the interpreted sentiment analysis as an input as well as the exported mood configuration model. The rule engine has a rule for each possible element of the model. If there is a match (e.g. emotional level is above a certain threshold) the rule fires.
+Now, based on the sentiment analysis and the mood configuration model, the system needs to change the environment (e.g. color of the lights). To trigger this, a rule engine will be used. The rule engine gets the interpreted sentiment analysis as an input as well as the exported mood configuration model. The rule engine has a rule for each possible element of the model. If there is a match (e.g. emotional level is above a certain threshold) the rule fires.
 
 When a rule from the rule engine is executed it needs to trigger a change in color of the lights. To do this the rule engine can call a script which then sends out a wireless signal. A lamp will listen for signals and will change its color accordingly. Alternatively we can use the LEDs of the NAO. It will need to be discussed which option is more appropriate for scenario 2 and 3.
 
