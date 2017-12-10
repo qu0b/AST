@@ -48,7 +48,7 @@ This allows us to focus on the main goal of intepreting and analyzing the audio 
 
 ##### Overview of the code
 
-*The full code for this prototype of scenario 1 can be found [here](../src/tesing/hello_detection.py).*
+*The full code for this prototype of scenario 1 can be found [here](../src/testing/hello_detection.py).*
 
 The following is the most important part of the code.
 
