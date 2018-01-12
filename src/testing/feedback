@@ -1,0 +1,9 @@
+- lichter anpassen nicht smart home lights 
+- audio abspielen, wir sollen ein lied abspielen. Ein lied was den emotionen entspricht.
+- bericht ueber verschiedene emotions libraries schreiben (python), (schreiben was der nao kann).
+
+- devops wo kann mans deployn, damit jemand weiter daran arbeiten kann.
+- moeglich ins omilab.
+
+1. aus dem audio eine semantische zahl erlangen... mit library x
+2. Die zahl verwenden um einen song abzuspielen.

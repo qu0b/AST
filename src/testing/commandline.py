@@ -17,3 +17,21 @@ player.play(fileId)
 
 import subprocess
 subprocess.call(["scp", "nao@192.168.75.41:test.wav","."])
+
+subprocess.call(["/Users/stefanstarflinger/Downloads/sox-14.4.2/sox", "test.wav","test.flac"])
+
+subprocess.call(["gsutil", "cp","gs://audio-for-semtec/"])
+# Emotion
+
+import httplib
+
+h1 = httplib.HTTPConnection('www.google.at')
+
+import requests
+
+token = 'ya29.c.Elo_BfQDEDnv30UfLRI4OMeohfGmzQw15W97we_6FCVF_qLE1AO4WOwKkFW6Vt2_-D-COqSlnoIL6PNYWAdfzGX1uWPpdWNj-FzESwvAdlvuaaXEdF-RhO3VNEI'
+headers = {"Content-Type": "application/json", "Authorization": "Bearer "+token}
+uri = "https://speech.googleapis.com/v1/speech:recognize"
+data = json.load(open('sync-request.json'))
+
+r = requests.post(uri, data=json.dumps(data), headers=headers)

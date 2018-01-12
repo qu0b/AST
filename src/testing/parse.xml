@@ -1,0 +1,179 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<adoxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="@boc-eu.com/boc-is/adonis.model.document;1 adoxmlmodel.xsd" version="" date="12.01.2018" time="15:42:04" database="adoxxdb" username="maximus" adoversion="5.1">
+<models>
+<model id="33801" name="max123" version="" modeltype="Mood Configuration Model" libtype="bp" applib="Mood Configuration Model Dynamic library">
+<modelattributes>
+<attribute name="Version number" type="STRING"></attribute>
+<attribute name="Author" type="STRING">maximus</attribute>
+<attribute name="Creation date" type="STRING">10.01.2018, 18:34</attribute>
+<attribute name="Date last changed" type="STRING">12.01.2018, 15:41:58</attribute>
+<attribute name="Last user" type="STRING">maximus</attribute>
+<attribute name="Keywords" type="STRING"></attribute>
+<attribute name="Comment" type="STRING"></attribute>
+<attribute name="Model type" type="ENUMERATION">Current model</attribute>
+<attribute name="State" type="ENUMERATION">In process</attribute>
+<attribute name="Reviewed on" type="STRING"></attribute>
+<attribute name="Reviewed by" type="STRING"></attribute>
+<attribute name="Description" type="STRING"></attribute>
+<attribute name="Number of objects and relations" type="INTEGER">25</attribute>
+<attribute name="World area" type="STRING">w:20.57cm h:26.96cm minw:5cm minh:5cm</attribute>
+<attribute name="Grid" type="STRING"></attribute>
+<attribute name="Zoom" type="INTEGER">100</attribute>
+<attribute name="Viewable area" type="STRING">VIEW representation:graphic&#10;GRAPHIC x:-16 y:-16 w:1058 h:753 scale:1&#10;TABLE&#10;</attribute>
+<attribute name="Current mode" type="STRING"></attribute>
+<attribute name="Base name" type="STRING">max123</attribute>
+<attribute name="Access state" type="ENUMERATION">write</attribute>
+<attribute name="Current page layout" type="STRING"></attribute>
+<attribute name="Connector marks" type="STRING"></attribute>
+<attribute name="Type" type="STRING">Mood Configuration Model</attribute>
+<attribute name="Change counter" type="INTEGER">225</attribute>
+<attribute name="Font size" type="INTEGER">0</attribute>
+<attribute name="Context of version" type="STRING"></attribute>
+</modelattributes>
+<instance id="obj.35000" class="Mood Configuration" name="NAO red">
+<attribute name="Position" type="STRING">NODE x:8cm y:4cm index:1</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+</instance>
+<instance id="obj.35003" class="Mood" name="Super happy">
+<attribute name="Position" type="STRING">NODE x:3.5cm y:7.5cm index:2</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Emotional range" type="ENUMERATION">Very positive</attribute>
+</instance>
+<instance id="obj.35006" class="Mood" name="Content">
+<attribute name="Position" type="STRING">NODE x:8cm y:8cm index:3</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Emotional range" type="ENUMERATION">Positive</attribute>
+</instance>
+<instance id="obj.35009" class="Mood" name="Salty">
+<attribute name="Position" type="STRING">NODE x:11.5cm y:7.5cm index:4</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Emotional range" type="ENUMERATION">Negative</attribute>
+</instance>
+<instance id="obj.35012" class="Music" name="very_positive">
+<attribute name="Position" type="STRING">NODE x:2cm y:12cm index:5</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+</instance>
+<instance id="obj.35015" class="Music" name="positive">
+<attribute name="Position" type="STRING">NODE x:7.5cm y:12.5cm index:6</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+</instance>
+<instance id="obj.35018" class="Music" name="negative">
+<attribute name="Position" type="STRING">NODE x:13.5cm y:13cm index:7</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+</instance>
+<instance id="obj.35021" class="Color" name="color-1232">
+<attribute name="Position" type="STRING">NODE x:4cm y:12cm index:8</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Color" type="ENUMERATION">Green</attribute>
+</instance>
+<instance id="obj.35024" class="Color" name="color-23231">
+<attribute name="Position" type="STRING">NODE x:10cm y:12.5cm index:9</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Color" type="ENUMERATION">Blue</attribute>
+</instance>
+<instance id="obj.35027" class="Color" name="color-923892">
+<attribute name="Position" type="STRING">NODE x:16cm y:12.5cm index:10</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Color" type="ENUMERATION">Orange</attribute>
+</instance>
+<instance id="obj.36200" class="Mood" name="Mad">
+<attribute name="Position" type="STRING">NODE x:18cm y:5cm index:20</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Emotional range" type="ENUMERATION">Very negative</attribute>
+</instance>
+<instance id="obj.36204" class="Music" name="very_negative">
+<attribute name="Position" type="STRING">NODE x:17cm y:9cm index:22</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+</instance>
+<instance id="obj.36207" class="Color" name="Color-36207">
+<attribute name="Position" type="STRING">NODE x:19.5cm y:9cm index:23</attribute>
+<attribute name="External tool coupling" type="STRING"></attribute>
+<attribute name="Color" type="ENUMERATION">Red</attribute>
+</instance>
+<connector id="con.35030" class="has Mood">
+<from instance="NAO red" class="Mood Configuration"></from>
+<to instance="Super happy" class="Mood"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:11</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.08cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35031" class="has Mood">
+<from instance="NAO red" class="Mood Configuration"></from>
+<to instance="Content" class="Mood"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:12</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.08cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35032" class="has Mood">
+<from instance="NAO red" class="Mood Configuration"></from>
+<to instance="Salty" class="Mood"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:13</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.08cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35033" class="has Attribute">
+<from instance="Super happy" class="Mood"></from>
+<to instance="very_positive" class="Music"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:14</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35034" class="has Attribute">
+<from instance="Super happy" class="Mood"></from>
+<to instance="color-1232" class="Color"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:15</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35036" class="has Attribute">
+<from instance="Content" class="Mood"></from>
+<to instance="color-23231" class="Color"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:16</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35037" class="has Attribute">
+<from instance="Salty" class="Mood"></from>
+<to instance="negative" class="Music"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:17</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35038" class="has Attribute">
+<from instance="Salty" class="Mood"></from>
+<to instance="color-923892" class="Color"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:18</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.35039" class="has Attribute">
+<from instance="Content" class="Mood"></from>
+<to instance="positive" class="Music"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:19</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.36203" class="has Mood">
+<from instance="NAO red" class="Mood Configuration"></from>
+<to instance="Mad" class="Mood"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:21</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.08cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:black&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.36600" class="has Attribute">
+<from instance="Mad" class="Mood"></from>
+<to instance="very_negative" class="Music"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:24</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+<connector id="con.36601" class="has Attribute">
+<from instance="Mad" class="Mood"></from>
+<to instance="Color-36207" class="Color"></to>
+<attribute name="Positions" type="STRING">EDGE 0 index:25</attribute>
+<attribute name="GraphRep" type="STRING">GRAPHREP&#10;SHADOW off&#10;PEN style:solid w:0.05cm&#10;&#10;START&#10;&#10;EDGE&#10;&#10;END&#10;FILL color:blue&#10;POLYGON 3 x1:-0.2cm y1:0.11cm x2:0cm y2:0cm x3:-0.2cm y3:-0.11cm</attribute>
+<attribute name="AttrRep" type="STRING"></attribute>
+</connector>
+</model>
+</models>
+</adoxml>
