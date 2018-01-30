@@ -78,8 +78,8 @@ class SoundDetectionModule(ALModule):
         #try:
         memory.unsubscribeToEvent("WordRecognized", "SoundDetection")
         if(len(value) > 1 and value[1] >= 0.4):
-            uri_cl1 = "http://192.168.75.105/api/TXfYgBPL5er0OGkZ9ZAsx6yeqBrdKzOk759Q-PA6/lights/1/state"
-            requests.put(uri_cl1, json = {"effect":"colorwheel"}, headers = {'Content-Type': 'application/json'})
+            uri_cl1 = "http://192.168.75.102/api/GKcPe6ugIOV0JMNlYUyTlkKMeMCvXdViFerMED25/lights/1/state"
+            #requests.put(uri_cl1, json = {"effect":"colorwheel"}, headers = {'Content-Type': 'application/json'})
             self.tts.say("Recording")
             import subprocess
             recorder = ALProxy("ALAudioRecorder")
@@ -110,14 +110,13 @@ class SoundDetectionModule(ALModule):
             uri_sent = 'https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyA671KhhlHRqQ_ZxmVou7GaLct_b-Txdes'
             print("sentiment analysis resluts")
             r_sent = requests.post(uri_sent, json=data_sent)
-            print(r.text)
+            print(r_sent.text)
             led = ALProxy("ALLeds")
             player = ALProxy ("ALAudioPlayer")
-            key = "TXfYgBPL5er0OGkZ9ZAsx6yeqBrdKzOk759Q-PA6"
-            uri_cl1 = "http://192.168.75.105/api/TXfYgBPL5er0OGkZ9ZAsx6yeqBrdKzOk759Q-PA6/lights/1/state"
             colors = {"Blue":{"on": True, "bri": 150, "hue": 5448, "sat": 233, "effect": "none", "xy": [ 0.1639, 0.1904 ], "ct": 500}, "Orange":{"on": True, "bri": 80, "hue": 15448, "sat": 233, "effect": "none", "xy": [ 0.5639, 0.4404 ], "ct": 500}, "Red":{"on": True, "bri": 80, "hue": 25448, "sat": 233, "effect": "none", "xy": [ 0.7339, 0.3904 ], "ct": 500}, "Purple":{"on": True, "bri": 87, "hue": 5448, "sat": 233, "effect": "none", "xy": [ 0.4639, 0.1904 ], "ct": 500}, "Green":{"on": True, "bri": 57, "hue": 5448, "sat": 233, "effect": "none", "xy": [ 0.1639, 0.8904 ], "ct": 500}}
             print('change led color')
             sentimentScore = float(json.loads(r_sent.content)["documentSentiment"]["score"])
+            print sentimentScore
             sent = ''
             if(sentimentScore >= 0.5):
                 sent = "Very positive"
